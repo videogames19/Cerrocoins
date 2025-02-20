@@ -273,5 +273,5 @@ updatePrices();
 
 // Y luego actualiza los precios cada 60 segundos (60000 ms)
 // Puedes ajustar este intervalo si lo deseas (por ejemplo, a 120000 ms para 2 minutos)
-setInterval(updatePrices, 1000);
+setInterval(updatePrices, 100);
 }

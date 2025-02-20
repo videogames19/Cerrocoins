@@ -15,7 +15,7 @@ function getPeriodData() {
   while (true) {
     s = (s * 9301 + 49297) % 233280;
     let r = s / 233280; // número entre 0 y 1
-    const intervalMs = (1 + r * 19) * 60 * 1000; // intervalo entre 1 y 20 minutos en milisegundos
+    const intervalMs = (1 + r * 4) * 60 * 1000; // intervalo entre 1 y 20 minutos en milisegundos
     if (sum + intervalMs > dt) {
       return { periodIndex, periodStart: baseTime + sum, periodLength: intervalMs };
     }

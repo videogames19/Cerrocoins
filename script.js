@@ -55,7 +55,7 @@ function signUp() {
     .then(cred => {
       return db.collection("users").doc(cred.user.uid).set({
         username: usernameInput,
-        cerrocoins: 5,
+        cerrocoins: 0,
         portfolio: {}
       });
     })

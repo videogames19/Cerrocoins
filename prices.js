@@ -1,4 +1,4 @@
-const companies = ["Empresa A", "Empresa B", "Empresa C"];
+const companies = ["Herrero", "Mago", "Carpintero"];
 
 /* 
   Función que simula la generación de periodos con duración aleatoria.

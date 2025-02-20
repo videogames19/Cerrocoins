@@ -252,4 +252,26 @@ function transferCoins() {
     .catch(error => {
       transferMessage.textContent = "Error en la transferencia: " + error.message;
     });
+// ====================
+// ACTUALIZACIÓN EN TIEMPO REAL DE PRECIOS
+// ====================
+
+function updatePrices() {
+  const marketList = document.getElementById("market-list");
+  const rows = marketList.getElementsByTagName("tr");
+  
+  // Itera sobre cada fila y actualiza el precio (suponiendo que la primera celda es el nombre y la segunda el precio)
+  for (let i = 0; i < rows.length; i++) {
+    const company = rows[i].cells[0].textContent;
+    const newPrice = getPrice(company);
+    rows[i].cells[1].textContent = newPrice;
+  }
+}
+
+// Actualiza inmediatamente los precios al cargar la página
+updatePrices();
+
+// Y luego actualiza los precios cada 60 segundos (60000 ms)
+// Puedes ajustar este intervalo si lo deseas (por ejemplo, a 120000 ms para 2 minutos)
+setInterval(updatePrices, 1000);
 }

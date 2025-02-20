@@ -1,0 +1,66 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #ffcc00;
+  padding: 20px;
+  font-size: 20px;
+  position: relative;
+}
+
+header button {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  padding: 5px 10px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"] {
+  padding: 10px;
+  margin: 5px;
+  width: 80%;
+  max-width: 300px;
+}
+
+button {
+  padding: 10px 15px;
+  margin: 5px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button.sell {
+  background-color: #dc3545;
+}
+
+table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background-color: #fff;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+#chart-container {
+  width: 80%;
+  margin: auto;
+  background: white;
+  padding: 20px;
+}

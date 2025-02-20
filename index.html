@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cerrocoin Exchange</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Sección de autenticación -->
+  <div id="auth">
+    <h2>Inicia sesión o regístrate</h2>
+    <input type="text" id="username" placeholder="Nombre de usuario">
+    <input type="password" id="password" placeholder="Contraseña">
+    <div>
+      <button id="loginBtn">Iniciar sesión</button>
+      <button id="signupBtn">Registrarse</button>
+    </div>
+    <p id="authMessage"></p>
+  </div>
+
+  <!-- Sección de la aplicación (visible solo al estar autenticado) -->
+  <div id="app" style="display:none;">
+    <header>
+      <h1>Cerrocoin Exchange</h1>
+      <button id="logoutBtn">Cerrar sesión</button>
+    </header>
+    
+    <section id="balance">
+      <h2>Tu Balance</h2>
+      <p>Cerrocoins: <span id="cerrocoins">0</span></p>
+    </section>
+
+    <section id="market">
+      <h2>Mercado</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Empresa</th>
+            <th>Precio (CC)</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="market-list"></tbody>
+      </table>
+    </section>
+
+    <section id="chart-container">
+      <h2>Gráfica de Precios</h2>
+      <canvas id="stockChart"></canvas>
+    </section>
+
+    <section id="transfer">
+      <h2>Transferir Cerrocoins</h2>
+      <input type="text" id="transferUsername" placeholder="Usuario destinatario">
+      <input type="number" id="transferAmount" placeholder="Cantidad">
+      <button id="transferBtn">Transferir</button>
+      <p id="transferMessage"></p>
+    </section>
+  </div>
+
+  <!-- Firebase CDN (versión 8.x para simplificar) -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <!-- Librería Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Nuestros scripts -->
+  <script src="prices.js"></script>
+  <script src="chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

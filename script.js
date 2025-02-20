@@ -224,18 +224,21 @@ function transferCoins() {
       const senderRef = db.collection("users").doc(currentUser.uid);
       
       // Transferencia atómica usando transacción
-      return db.runTransaction(transaction => {
-        return transaction.get(senderRef).then(senderDoc => {
-          const senderBalance = parseFloat(senderDoc.data().cerrocoins);
-          if (senderBalance < amount) {
-            throw "Saldo insuficiente para la transferencia.";
-          }
-          transaction.update(senderRef, { cerrocoins: senderBalance - amount });
-          return transaction.get(recipientRef);
-        }).then(recipientDocSnap => {
-          const recipientBalance = parseFloat(recipientDocSnap.data().cerrocoins);
-          transaction.update(recipientRef, { cerrocoins: recipientBalance + amount });
-        });
+      return db.runTransaction(async (transaction) => {
+        // Primero obtenemos los datos del remitente y destinatario
+        const senderDocSnap = await transaction.get(senderRef);
+        const recipientDocSnap = await transaction.get(recipientRef);
+
+        const senderBalance = parseFloat(senderDocSnap.data().cerrocoins);
+        const recipientBalance = parseFloat(recipientDocSnap.data().cerrocoins);
+
+        if (senderBalance < amount) {
+          throw "Saldo insuficiente para la transferencia.";
+        }
+
+        // Realizamos las escrituras después de las lecturas
+        transaction.update(senderRef, { cerrocoins: senderBalance - amount });
+        transaction.update(recipientRef, { cerrocoins: recipientBalance + amount });
       });
     })
     .then(() => {
@@ -246,3 +249,4 @@ function transferCoins() {
       transferMessage.textContent = "Error en la transferencia: " + error;
     });
 }
+
